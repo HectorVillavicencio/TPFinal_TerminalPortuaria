@@ -1,17 +1,24 @@
-package transporteTerrestre;
+package ar.edu.unq.po2.TPFinal_TerminalPortuaria.transporteTerrestre;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class EmpresaDeTransporte {
+	private int id;
 	private List<Camion> camiones;
 	private List<Chofer> choferes;
 	
 	
-	public EmpresaDeTransporte() {
+	public EmpresaDeTransporte(int id) {
+		this.id = id;
 		this.camiones = new ArrayList<Camion>();
 		this.choferes = new ArrayList<Chofer>();
 	}
+	
+	public int getId() {
+		return this.id;
+	}
+	
 	public List<Camion> camiones(){
 		return this.camiones;
 	}
