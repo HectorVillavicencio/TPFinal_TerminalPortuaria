@@ -1,5 +1,7 @@
 package ar.edu.unq.po2.TPFinal_TerminalPortuaria.transporteTerrestre;
 
+import ar.edu.unq.po2.TPFinal_TerminalPortuaria.container.Container;
+
 public class Camion {
 	private int id;
 	private Chofer chofer;

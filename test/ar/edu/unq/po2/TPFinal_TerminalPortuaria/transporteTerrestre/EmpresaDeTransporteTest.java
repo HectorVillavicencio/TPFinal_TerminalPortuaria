@@ -11,11 +11,18 @@ class EmpresaDeTransporteTest {
 
 	private Chofer chofer;
 	private EmpresaDeTransporte empresa;
+	private Camion camion;
 	
 	@BeforeEach
 	public void setUp() {
 		chofer = mock(Chofer.class);
+		camion = mock(Camion.class);
 		empresa = new EmpresaDeTransporte(1); 
 	}
-
+	
+	@Test
+	public void testEmpresa() {
+		
+	}
+	
 }
