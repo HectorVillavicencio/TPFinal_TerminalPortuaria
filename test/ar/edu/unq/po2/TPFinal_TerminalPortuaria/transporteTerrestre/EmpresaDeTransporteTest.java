@@ -30,11 +30,18 @@ class EmpresaDeTransporteTest {
 	}
 	
 	@Test
-	public void testEmpresa() {
+	public void testAgregarCamionesAEmpresa() {
 		empresa.agregarCamion(camion1);
 		empresa.agregarCamion(camion2);
 		empresa.agregarCamion(camion3);
 		assertEquals(empresa.camiones().size(),3);
 	}
 	
+	@Test
+	public void testAgregarChoferesAEmpresa() {
+		empresa.agregarChofer(chofer1);
+		empresa.agregarChofer(chofer2);
+		empresa.agregarChofer(chofer3);
+		assertEquals(empresa.choferes().size(),3);
+	}
 }
