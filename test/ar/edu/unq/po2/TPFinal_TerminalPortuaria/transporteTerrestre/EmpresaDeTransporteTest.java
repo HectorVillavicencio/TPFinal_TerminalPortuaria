@@ -9,20 +9,32 @@ import static org.mockito.Mockito.*;
 
 class EmpresaDeTransporteTest {
 
-	private Chofer chofer;
+	private Chofer chofer1;
+	private Chofer chofer2;
+	private Chofer chofer3;
+	private Camion camion1;
+	private Camion camion2;
+	private Camion camion3;
 	private EmpresaDeTransporte empresa;
-	private Camion camion;
+	
 	
 	@BeforeEach
-	public void setUp() {
-		chofer = mock(Chofer.class);
-		camion = mock(Camion.class);
+	public void setUp() throws Exception {
+		chofer1 = mock(Chofer.class);
+		chofer2 = mock(Chofer.class);
+		chofer3 = mock(Chofer.class);
+		camion1 = mock(Camion.class);
+		camion2 = mock(Camion.class);
+		camion3 = mock(Camion.class);
 		empresa = new EmpresaDeTransporte(1); 
 	}
 	
 	@Test
 	public void testEmpresa() {
-		
+		empresa.agregarCamion(camion1);
+		empresa.agregarCamion(camion2);
+		empresa.agregarCamion(camion3);
+		assertEquals(empresa.camiones().size(),3);
 	}
 	
 }
