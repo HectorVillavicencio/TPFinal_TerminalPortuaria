@@ -2,6 +2,7 @@ package ar.edu.unq.po2.TPFinal_TerminalPortuaria.BuqueYContainer;
 
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.never;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
@@ -32,6 +33,13 @@ class BuqueTest {
 		gps = mock(GPS.class);
 		buque = new Buque(gps);
 		buque.setTerminal(terminal);
+	}
+	
+	@Test
+	void testBuqueNOEstaAMenosDe50KmsEntoncesAvisaATerminal() {
+		when(buque.distanciaDeTerminal()).thenReturn(51);
+		buque.chequearPosicion();
+		verify(terminal, never()).avisarLlegadaAImportadores(buque);
 	}
 	
 	@Test
