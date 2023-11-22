@@ -5,7 +5,7 @@ public class Inbound extends FaseDeBuque{
 	public Inbound(Buque buque) {
 		super(buque);
 		// TODO Auto-generated constructor stub
-		this.buque.avisoDeArrivo();
+		this.buque.avisoDeArribo();
 	}
 
 	@Override

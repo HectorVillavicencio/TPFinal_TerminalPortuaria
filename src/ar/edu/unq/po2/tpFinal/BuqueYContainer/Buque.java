@@ -54,7 +54,7 @@ public class Buque {
 		this.fase = nuevaFase;
 	}
 
-	public void avisoDeArrivo() {
+	public void avisoDeArribo() {
 		// TODO Auto-generated method stub
 		this.terminal.avisarLlegadaAImportadores(this);
 	}
