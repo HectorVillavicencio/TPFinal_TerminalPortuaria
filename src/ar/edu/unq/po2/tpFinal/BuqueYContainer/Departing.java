@@ -16,7 +16,7 @@ public class Departing extends FaseDeBuque{
 	@Override
 	public void chequearPosicion(int distanciaDeTerminal) {
 		// TODO Auto-generated method stub
-		if(distanciaDeTerminal == 1) {
+		if(distanciaDeTerminal >= 1) {
 			this.buque.avisoDePartida();
 			this.siguienteFase();
 		}

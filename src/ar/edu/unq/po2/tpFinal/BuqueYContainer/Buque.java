@@ -3,18 +3,27 @@ import java.util.ArrayList;
 import java.util.List;
 
 import ar.edu.unq.po2.TPFinal_TerminalPortuaria.container.*;
-import ar.edu.unq.po2.tpFinal.TerminalPortuaria.TerminalPortuaria;
+import ar.edu.unq.po2.tpFinal.TerminalPortuaria.TerminalGestionada;
 
 public class Buque {
 	
 	private List<Container> containers;
 	private GPS gps;
 	private FaseDeBuque fase;
+	private TerminalGestionada terminal;
 	
 	public Buque(GPS gps) {
 		this.gps = gps;
 		this.containers = new ArrayList<Container>();
 		this.fase = new Outbound(this);
+	}
+	
+	public FaseDeBuque getFase() {
+		return fase;
+	}
+	
+	public void setTerminal(TerminalGestionada terminal) {
+		this.terminal = terminal;
 	}
 	
 	public void agregarCarga(Container container) {
@@ -25,12 +34,16 @@ public class Buque {
 		this.containers.remove(container);
 	}
 	
-	public int distanciaDeTerminal(TerminalPortuaria terminal) {
-		return this.gps.distanciaDeTerminal(terminal);
+	public List<Container> getCarga(){
+		return this.containers;
 	}
 	
-	public void chequearPosicion(TerminalPortuaria terminal) {
-		this.fase.chequearPosicion(this.distanciaDeTerminal(terminal));
+	public int distanciaDeTerminal() {
+		return this.gps.distanciaDeTerminal(this.terminal);
+	}
+	
+	public void chequearPosicion() {
+		this.fase.chequearPosicion(this.distanciaDeTerminal());
 	}
 	
 	public void cambiarFase() {
@@ -43,21 +56,17 @@ public class Buque {
 
 	public void avisoDeArrivo() {
 		// TODO Auto-generated method stub
-		//avisar a la terminal que el buque esta llegando
-	}
-	
-	
-	//ambas funciones funcionan igual, unificar en una sola
-	public void iniciarTrabajoEnTerminal() {
-		this.cambiarFase();
-	}
-	
-	public void depart() {
-		this.cambiarFase();
+		this.terminal.avisarLlegadaAImportadores(this);
 	}
 
 	public void avisoDePartida() {
 		// TODO Auto-generated method stub
-		//avisar a la terminal que el buque ya partio
+		this.terminal.avisarSalidaAExportadores(this);
+	}	
+	
+	//para pasar a Working y Departing
+	public void serAutorizado() {
+		this.cambiarFase();
 	}
+
 }
