@@ -9,6 +9,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import ar.edu.unq.po2.tpFinal.BuqueYContainer.Buque;
+import ar.edu.unq.po2.tpFinal.BusquedaRutas.BusquedaDeRutas;
 import ar.edu.unq.po2.tpFinal.NavieraYCircuito.Circuito;
 import ar.edu.unq.po2.tpFinal.NavieraYCircuito.Naviera;
 import ar.edu.unq.po2.tpFinal.NavieraYCircuito.Tramo;
