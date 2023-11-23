@@ -22,10 +22,11 @@ import ar.edu.unq.po2.tpFinal.NavieraYCircuito.Naviera;
 import ar.edu.unq.po2.tpFinal.NavieraYCircuito.Tramo;
 import ar.edu.unq.po2.tpFinal.NavieraYCircuito.Viaje;
 import ar.edu.unq.po2.tpFinal.TerminalPortuaria.TerminalPortuaria;
+import ar.edu.unq.po2.tpFinal.TerminalPortuaria.TerminalPortuariaGestionada;
 
 class BusquedaTestCase {
 	
-	
+	TerminalPortuariaGestionada terminal;
 	BusquedaDeRutas nombreDestino1;
 
 	
@@ -119,6 +120,8 @@ class BusquedaTestCase {
 		compuestaAnd= new BusquedaCompuestaAnd();
 		compuestaOr= new BusquedaCompuestaOr();
 		
+		terminal= new TerminalPortuariaGestionada();
+		
 	}
 	@Test
 	void testBusquedaPorDestino1() {
@@ -161,6 +164,19 @@ class BusquedaTestCase {
 		 
 		 assertEquals(listaFiltrada.size(),2);
 		 
+	 }
+	 
+	 
+	 @Test
+	 void testBusquedaDeLaTerminal() {
+		 
+		 assertEquals(terminal.buscarRutas(compuestaAnd).size(),0);
+	 }
+	 
+	 @Test
+	 void testBusquedaLaTerminal() {
+		 terminal.agregarViaje(viaje1);
+		 assertEquals(terminal.getCronograma().size(),1);
 	 }
 	 
 	 

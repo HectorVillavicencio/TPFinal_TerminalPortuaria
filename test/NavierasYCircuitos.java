@@ -15,6 +15,7 @@ import ar.edu.unq.po2.tpFinal.NavieraYCircuito.Naviera;
 import ar.edu.unq.po2.tpFinal.NavieraYCircuito.Tramo;
 import ar.edu.unq.po2.tpFinal.NavieraYCircuito.Viaje;
 import ar.edu.unq.po2.tpFinal.TerminalPortuaria.TerminalPortuaria;
+import ar.edu.unq.po2.tpFinal.TerminalPortuaria.TerminalPortuariaGestionada;
 
 class NavierasYCircuitos {
 	
@@ -38,6 +39,8 @@ class NavierasYCircuitos {
 	TerminalPortuaria terminal8;
 	Viaje viaje1;
 	Viaje viaje2;
+	
+	TerminalPortuariaGestionada terminal;
 	
 	@BeforeEach
 	void SetUp() throws Exception {
@@ -69,6 +72,8 @@ class NavierasYCircuitos {
 		circuito3.agregarTramo(tramo2);
 		
 		viaje1 = new Viaje(circuito3, buque1,LocalDateTime.of(2023, Month.NOVEMBER, 10, 12, 0));
+		
+		terminal = new TerminalPortuariaGestionada();
 		
 		
 	} 
@@ -171,6 +176,11 @@ class NavierasYCircuitos {
 		assertEquals(naviera.getCircuitos().size(), 3);
 	}
 	
+	@Test
+	void testagregarViajeTerminalG() {
+		terminal.agregarViaje(viaje1);
+		assertEquals(terminal.getCronograma().size(),1);
+	}
 
 	
 	
