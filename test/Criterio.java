@@ -4,11 +4,13 @@ import static org.mockito.Mockito.mock;
 import java.time.LocalDateTime;
 import java.time.Month;
 import java.util.ArrayList;
-import java.util.Arrays;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import Criterio.MenorPrecio;
+import Criterio.MenorTerminal;
+import Criterio.MenorTiempo;
 import ar.edu.unq.po2.tpFinal.BuqueYContainer.Buque;
 import ar.edu.unq.po2.tpFinal.BusquedaRutas.BusquedaDeRutas;
 import ar.edu.unq.po2.tpFinal.BusquedaRutas.FiltroFechaLlegada;
@@ -19,19 +21,11 @@ import ar.edu.unq.po2.tpFinal.NavieraYCircuito.Tramo;
 import ar.edu.unq.po2.tpFinal.NavieraYCircuito.Viaje;
 import ar.edu.unq.po2.tpFinal.TerminalPortuaria.TerminalPortuaria;
 
-class BusquedaTestCase {
-	
-	
-	BusquedaDeRutas nombreDestino1;
+class Criterio {
+	MenorPrecio precio;
+	MenorTerminal terminal;
+	MenorTiempo tiempo;
 
-	
-	BusquedaDeRutas fechaSalida1;
-	BusquedaDeRutas fechaSalida2;
-	
-	
-	BusquedaDeRutas fechaLlegada1;
-	BusquedaDeRutas fechaLlegada2;
-	BusquedaDeRutas fechaLlegada3;
 	
 	
 	Naviera naviera;
@@ -104,24 +98,13 @@ class BusquedaTestCase {
 		viajes.add(viaje2);
 		viajes.add(viaje3); 
 		
+		precio = new MenorPrecio(viajes);
 		
-		nombreDestino1 =new FiltroPuertoDestino(terminal4);
-		
-		fechaSalida1 = new FiltroFechaLlegada(LocalDateTime.of(2023, Month.NOVEMBER, 1, 11, 0));
-
 		
 	}
 	@Test
-	void testBusquedaPorDestino1() {
-		ArrayList<Viaje> listaFiltrada = nombreDestino1.buscar(viajes);
-		assertEquals(listaFiltrada.size(),1); 
+	void test() {
+		fail("Not yet implemented");
 	}
-	
-	void testBusquedaPorFechaLlegada1() {
-		ArrayList<Viaje> listaFiltrada = fechaSalida1.buscar(viajes);
-		assertEquals(listaFiltrada.size(),0);
-	}
-
-	
 
 }

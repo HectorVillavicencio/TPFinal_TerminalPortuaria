@@ -5,20 +5,21 @@ import java.util.ArrayList;
 import ar.edu.unq.po2.tpFinal.NavieraYCircuito.Circuito;
 import ar.edu.unq.po2.tpFinal.NavieraYCircuito.Viaje;
 
-public abstract class MenorTerminal {
+public class MenorTerminal extends Criterio{
 	
-	public Circuito mejorCircuito(ArrayList<Viaje> viajes) {
-		Circuito resultado = viajes.get(0).getCircuito();
-		for (Viaje viaje : viajes) {
-			if (this.condicionBusqueda(viaje)) {
-				resultado = viaje.getCircuito();
-			} 
-		}
-		return resultado;
+	private int terminales;
+
+	public MenorTerminal(int terminales) {
+		
+		super();
+		this.terminales = terminales;
 		
 	}
-	
-	protected abstract boolean condicionBusqueda(Viaje viaje);
+
+
+	protected boolean condicionBusqueda(Circuito circuito){
+			return circuito.getTramos().size()==(terminales);
+		}
 	
 
 }
