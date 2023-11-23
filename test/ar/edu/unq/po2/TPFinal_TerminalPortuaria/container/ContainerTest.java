@@ -7,20 +7,20 @@ import static org.mockito.Mockito.mock;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import ar.edu.unq.po2.tpFinal.BuqueYContainer.Outbound;
+
 class ContainerTest {
 	private Container container1;
-	private TipoCerrado CerradoPrecinto;
-	private TipoContainer Dry;
 	
 	@BeforeEach
 	void SetUp() throws Exception{
-		container1= new Container(CerradoPrecinto, 10, 10, 10, 100, 0, Dry);
+		container1= new Container(TipoCerrado.CerradoPrecinto, 10, 10, 10, 100, 0, TipoContainer.Dry);
 	}
 	
 
 	@Test
 	void testContainerTipoDeCerrado() {		
-		assertEquals(container1.getTipoCerrado(), CerradoPrecinto); 
+		assertEquals(TipoCerrado.CerradoPrecinto,container1.getTipoCerrado());
 	}
 	@Test
 	void testContainerGetAncho() {		
@@ -49,7 +49,7 @@ class ContainerTest {
 	
 	@Test
 	void testContainerGetTipoContainer() {		
-		assertEquals(container1.getTipoContainer(), Dry); 
+		assertEquals(TipoContainer.Dry,container1.getTipoContainer()); 
 	}
 
 

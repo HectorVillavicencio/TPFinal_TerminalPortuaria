@@ -61,6 +61,7 @@ class BuqueTest {
 	void testBuqueEstaEnLaTerminaYRecibeAutorizacionParaTrabajar() {
 		when(buque.distanciaDeTerminal()).thenReturn(0);
 		buque.setFase(new Arrived(buque));
+		buque.chequearPosicion();
 		buque.serAutorizado();
 		assertInstanceOf(Working.class, buque.getFase());
 	}
@@ -69,6 +70,7 @@ class BuqueTest {
 	void testBuqueEstaEnLaTerminaYFinalizaLosTrabajosYRecibeAutorizacionParaPartir() {
 		when(buque.distanciaDeTerminal()).thenReturn(0);
 		buque.setFase(new Working(buque));
+		buque.chequearPosicion();
 		buque.serAutorizado();
 		assertInstanceOf(Departing.class, buque.getFase());
 	}
