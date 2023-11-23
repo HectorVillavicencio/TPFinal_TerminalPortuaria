@@ -18,6 +18,7 @@ import ar.edu.unq.po2.tpFinal.NavieraYCircuito.Naviera;
 import ar.edu.unq.po2.tpFinal.NavieraYCircuito.Tramo;
 import ar.edu.unq.po2.tpFinal.NavieraYCircuito.Viaje;
 import ar.edu.unq.po2.tpFinal.TerminalPortuaria.TerminalPortuaria;
+import ar.edu.unq.po2.tpFinal.TerminalPortuaria.TerminalPortuariaGestionada;
 
 public class CriterioTestCase {
 	
@@ -48,6 +49,8 @@ public class CriterioTestCase {
 	Viaje viaje3;
 	
 	ArrayList<Viaje> viajes; 
+	
+	TerminalPortuariaGestionada terminalG;
 	
 	@BeforeEach
 	void SetUp() throws Exception { 
@@ -98,6 +101,8 @@ public class CriterioTestCase {
 		precio = new MenorPrecio();
 		terminal = new MenorTerminal();
 		
+		terminalG = new TerminalPortuariaGestionada();
+		
 		
 	} 
 	
@@ -116,7 +121,24 @@ public class CriterioTestCase {
 		assertEquals(terminal.buscar(viajes),circuito3); 
 	}
 	
+	@Test
+	void mejorCostoTerminalG() {
+		terminalG.elegirCriterio(precio);
+		terminalG.agregarViaje(viaje1);
+		terminalG.agregarViaje(viaje3);
+		terminalG.agregarViaje(viaje2);
+		assertEquals(terminalG.mejorCircuito(),circuito3);
+		
+	}
 	
+	@Test
+	void mejorCostoTerminalget() {
+		terminalG.elegirCriterio(precio);
+		assertEquals(terminalG.getCriterio(),precio); 
+		
+	}
+	
+
 	
 
 }
