@@ -9,14 +9,14 @@ public abstract class Criterio {
 	public Circuito buscar(ArrayList<Viaje> viajes){
 		Circuito resultado = viajes.get(0).getCircuito();
 		for (Viaje viaje : viajes) {
-			if (this.condicionBusqueda(viaje.getCircuito())) {
+			if (this.condicionBusqueda(resultado,viaje.getCircuito())) {
 				resultado = viaje.getCircuito();
 			} 
 		}
-		return resultado; 
+		return resultado;  
 		
 	}
 	
-	protected abstract boolean condicionBusqueda(Circuito circuito);
+	protected abstract boolean condicionBusqueda(Circuito circuito1, Circuito circuito2);
 
 }

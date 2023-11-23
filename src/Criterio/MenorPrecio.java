@@ -1,24 +1,25 @@
 package Criterio;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 
 import ar.edu.unq.po2.tpFinal.NavieraYCircuito.Circuito;
 import ar.edu.unq.po2.tpFinal.NavieraYCircuito.Viaje;
 
 public class MenorPrecio extends Criterio{
 	
-	private float costo;
 
-	public MenorPrecio(float costo) {
+
+	public MenorPrecio() {
 		
 		super();
-		this.costo = costo;
+
 		
 	}
 
 	@Override
-	protected boolean condicionBusqueda(Circuito circuito) {
-		return circuito.costoTotal()==(costo);
+	protected boolean condicionBusqueda(Circuito circuito1, Circuito circuito2) {
+		return circuito1.costoTotal()>circuito2.costoTotal(); 
 	} 
 	
 }

@@ -1,45 +1,29 @@
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.Assert.assertEquals;
 import static org.mockito.Mockito.mock;
 
 import java.time.LocalDateTime;
 import java.time.Month;
 import java.util.ArrayList;
-import java.util.Arrays;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import Criterio.Criterio;
+import Criterio.MenorPrecio;
+import Criterio.MenorTerminal;
+import Criterio.MenorTiempo;
 import ar.edu.unq.po2.tpFinal.BuqueYContainer.Buque;
-import ar.edu.unq.po2.tpFinal.BusquedaRutas.BusquedaCompuesta;
-import ar.edu.unq.po2.tpFinal.BusquedaRutas.BusquedaCompuestaAnd;
-import ar.edu.unq.po2.tpFinal.BusquedaRutas.BusquedaCompuestaOr;
-import ar.edu.unq.po2.tpFinal.BusquedaRutas.BusquedaDeRutas;
-import ar.edu.unq.po2.tpFinal.BusquedaRutas.FiltraFechaSalida;
-import ar.edu.unq.po2.tpFinal.BusquedaRutas.FiltroFechaLlegada;
-import ar.edu.unq.po2.tpFinal.BusquedaRutas.FiltroPuertoDestino;
 import ar.edu.unq.po2.tpFinal.NavieraYCircuito.Circuito;
 import ar.edu.unq.po2.tpFinal.NavieraYCircuito.Naviera;
 import ar.edu.unq.po2.tpFinal.NavieraYCircuito.Tramo;
 import ar.edu.unq.po2.tpFinal.NavieraYCircuito.Viaje;
 import ar.edu.unq.po2.tpFinal.TerminalPortuaria.TerminalPortuaria;
 
-class BusquedaTestCase {
+public class CriterioTestCase {
 	
-	
-	BusquedaDeRutas nombreDestino1;
-
-	
-	BusquedaDeRutas fechaSalida1;
-	BusquedaDeRutas fechaSalida2;
-	
-	
-	BusquedaDeRutas fechaLlegada1;
-	BusquedaDeRutas fechaLlegada2;
-	BusquedaDeRutas fechaLlegada3;
-	
-	BusquedaCompuesta compuestaAnd;
-	BusquedaCompuesta compuestaOr;
-	
+	Criterio precio;
+	Criterio tiempo;
+	Criterio terminal;
 	
 	Naviera naviera;
 	Circuito circuito1;
@@ -92,7 +76,7 @@ class BusquedaTestCase {
 		circuito1.agregarTramo(tramo2);
 		circuito1.agregarTramo(tramo3);
 		circuito1.agregarTramo(tramo4);
-		
+		 
 		circuito2 = new Circuito(); 
 		circuito2.agregarTramo(tramo1);
 		circuito2.agregarTramo(tramo3);
@@ -100,7 +84,7 @@ class BusquedaTestCase {
 		
 		circuito3 = new Circuito(); 		
 		circuito3.agregarTramo(tramo1);
-		circuito3.agregarTramo(tramo2); 
+		circuito3.agregarTramo(tramo2);
 		
 		viaje1 = new Viaje(circuito1, buque1,LocalDateTime.of(2023, Month.NOVEMBER, 1, 1, 0));
 		viaje2 = new Viaje(circuito2, buque1,LocalDateTime.of(2023, Month.NOVEMBER, 2, 2, 0));
@@ -108,62 +92,31 @@ class BusquedaTestCase {
 		
 		viajes = new ArrayList<Viaje>();
 		viajes.add(viaje1);
-		viajes.add(viaje2);
 		viajes.add(viaje3); 
 		
+		tiempo = new MenorTiempo();
+		precio = new MenorPrecio();
+		terminal = new MenorTerminal();
 		
-		nombreDestino1 =new FiltroPuertoDestino(terminal4);
-		fechaSalida1 = new FiltraFechaSalida(LocalDateTime.of(2023, Month.NOVEMBER, 1, 1, 0));	
-		fechaLlegada3= new FiltroFechaLlegada(LocalDateTime.of(2023, Month.NOVEMBER, 1, 3, 0));
 		
-		compuestaAnd= new BusquedaCompuestaAnd();
-		compuestaOr= new BusquedaCompuestaOr();
-		
-	}
+	} 
+	
 	@Test
-	void testBusquedaPorDestino1() {
-		ArrayList<Viaje> listaFiltrada = nombreDestino1.buscar(viajes);
-		assertEquals(listaFiltrada.size(),1);  
+	void testMejorTiempoDelCriterio() {
+		assertEquals(tiempo.buscar(viajes),circuito3); 
 	}
 	
-	 @Test
-	void testBusquedaPorFechaSalida1() {
-		ArrayList<Viaje> listaFiltrada = fechaSalida1.buscar(viajes);
-		assertEquals(listaFiltrada.size(),1); 
-	} 
-	 
-	 @Test
-	 void testBusquedaPorFechaLlegada1() {
-		ArrayList<Viaje> listaFiltrada = fechaLlegada3.buscar(viajes);
-		assertEquals(listaFiltrada.size(),0);  
-	} 
-	 
-	 @Test
-	 void testBusquedaCompuestaAnd1() {
-		 compuestaAnd.addBusqueda(nombreDestino1);
-		 compuestaAnd.addBusqueda(fechaSalida1);
-		 
-		 ArrayList<Viaje> listaFiltrada =  compuestaAnd.buscar(viajes);
-		 
-		 assertEquals(listaFiltrada.size(),0);
-		 
-	 }
-	 
-	 @Test
-	 void testBusquedaCompuestaOr1() {
-		 compuestaOr.addBusqueda(nombreDestino1);
-		 compuestaOr.addBusqueda(fechaSalida1);
-		 compuestaOr.addBusqueda(fechaSalida2);
-		 compuestaOr.removeBusqueda(fechaSalida2);
-		 
-		 
-		 ArrayList<Viaje> listaFiltrada =  compuestaOr.buscar(viajes);
-		 
-		 assertEquals(listaFiltrada.size(),2);
-		 
-	 }
-	 
-	 
+	@Test
+	void testMejorPrecioDelCriterio() {
+		assertEquals(precio.buscar(viajes),circuito3); 
+	}
+	
+	@Test
+	void testMejorTerminalDelCriterio() {
+		assertEquals(terminal.buscar(viajes),circuito3); 
+	}
+	
+	
 	
 
 }

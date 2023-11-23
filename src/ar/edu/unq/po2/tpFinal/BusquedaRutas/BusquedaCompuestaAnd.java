@@ -4,7 +4,7 @@ import java.util.ArrayList;
 
 import ar.edu.unq.po2.tpFinal.NavieraYCircuito.Viaje;
 
-public class BusquedaCompuestaAnd extends BusquedaCompuesta {
+public class BusquedaCompuestaAnd extends BusquedaCompuesta { 
 	
 	public BusquedaCompuestaAnd() {
 		super();

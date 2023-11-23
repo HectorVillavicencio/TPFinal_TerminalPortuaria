@@ -7,17 +7,17 @@ import ar.edu.unq.po2.tpFinal.NavieraYCircuito.Viaje;
 
 public class MenorTiempo extends Criterio{
 	
-	private int tiempo;
+	
 
-	public MenorTiempo(int tiempo) {
+	public MenorTiempo() {
 		
 		super();
-		this.tiempo = tiempo;
+		
 		
 	}
 
-	protected boolean condicionBusqueda(Circuito circuito){
-		return circuito.tiempoTotal()==(tiempo);
+	protected boolean condicionBusqueda(Circuito circuito1, Circuito circuito2){
+		return circuito1.tiempoTotal() > circuito2.tiempoTotal(); 
 	}
 
 }

@@ -17,9 +17,9 @@ public class FiltraFechaSalida extends BusquedaDeRutas{
 		
 	}
 
-	@Override
+	@Override 
 	protected boolean condicionBusqueda(Viaje viaje) {
 		return viaje.getFechaSalida().equals(fechaSalida);
-	} 
-
-}
+	}  
+ 
+} 

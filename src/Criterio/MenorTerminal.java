@@ -7,19 +7,18 @@ import ar.edu.unq.po2.tpFinal.NavieraYCircuito.Viaje;
 
 public class MenorTerminal extends Criterio{
 	
-	private int terminales;
 
-	public MenorTerminal(int terminales) {
+
+	public MenorTerminal()  {
 		
 		super();
-		this.terminales = terminales;
 		
 	}
 
 
-	protected boolean condicionBusqueda(Circuito circuito){
-			return circuito.getTramos().size()==(terminales);
-		}
+	protected boolean condicionBusqueda(Circuito circuito1, Circuito circuito2){
+			return circuito1.getTramos().size() > circuito2.getTramos().size();
+		} 
 	
 
 }
