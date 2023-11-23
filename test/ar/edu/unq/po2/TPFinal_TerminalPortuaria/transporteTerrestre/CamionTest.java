@@ -11,12 +11,9 @@ import static org.mockito.Mockito.*;
 class CamionTest {
 
 	private Chofer chofer1;
-	private Chofer chofer2;
-	private Chofer chofer3;
 	private Container container;
 	private Camion camion1;
-	private Camion camion2;
-	private Camion camion3;
+
 	
 	@BeforeEach
 	public void setUp() throws Exception {
@@ -49,5 +46,16 @@ class CamionTest {
 		camion1.cargar(container);
 		camion1.descargar();
 		assertEquals(camion1.getCarga(),null);
+	}
+	
+	@Test
+	public void testIdDeChofer() {
+		camion1.agregarChofer(new Chofer(1));
+		assertEquals(camion1.getChofer().getId(),1);
+	}
+	
+	@Test
+	public void testIdDeCamion() {
+		assertEquals(camion1.getId(),1);
 	}
 }

@@ -26,7 +26,7 @@ class EmpresaDeTransporteTest {
 		camion1 = mock(Camion.class);
 		camion2 = mock(Camion.class);
 		camion3 = mock(Camion.class);
-		empresa = new EmpresaDeTransporte(1); 
+		empresa = new EmpresaDeTransporte(52); 
 	}
 	
 	@Test
@@ -36,6 +36,16 @@ class EmpresaDeTransporteTest {
 		empresa.agregarCamion(camion3);
 		assertEquals(empresa.camiones().size(),3);
 	}
+
+	@Test
+	public void testAgregarYEliminarCamionesAEmpresa() {
+		empresa.agregarCamion(camion1);
+		empresa.agregarCamion(camion2);
+		empresa.agregarCamion(camion3);
+		empresa.eliminarCamion(camion2);
+		empresa.eliminarCamion(camion1);
+		assertEquals(empresa.camiones().size(),1);
+	}
 	
 	@Test
 	public void testAgregarChoferesAEmpresa() {
@@ -43,5 +53,19 @@ class EmpresaDeTransporteTest {
 		empresa.agregarChofer(chofer2);
 		empresa.agregarChofer(chofer3);
 		assertEquals(empresa.choferes().size(),3);
+	}
+	
+	@Test
+	public void testAgregarYEliminarChoferesAEmpresa() {
+		empresa.agregarChofer(chofer1);
+		empresa.agregarChofer(chofer2);
+		empresa.agregarChofer(chofer3);
+		empresa.eliminarChofer(chofer3);
+		assertEquals(empresa.choferes().size(),2);
+	}
+	
+	@Test
+	public void testIdDeEmpresa() {
+		assertEquals(empresa.getId(),52);
 	}
 }
