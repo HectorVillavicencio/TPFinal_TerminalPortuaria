@@ -182,7 +182,4 @@ class NavierasYCircuitos {
 		assertEquals(terminal.getCronograma().size(),1);
 	}
 
-	
-	
-
 }
