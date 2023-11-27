@@ -21,12 +21,13 @@ import ar.edu.unq.po2.tpFinal.NavieraYCircuito.Circuito;
 import ar.edu.unq.po2.tpFinal.NavieraYCircuito.Naviera;
 import ar.edu.unq.po2.tpFinal.NavieraYCircuito.Tramo;
 import ar.edu.unq.po2.tpFinal.NavieraYCircuito.Viaje;
+import ar.edu.unq.po2.tpFinal.TerminalPortuaria.TerminalGestionada;
 import ar.edu.unq.po2.tpFinal.TerminalPortuaria.TerminalPortuaria;
-import ar.edu.unq.po2.tpFinal.TerminalPortuaria.TerminalPortuariaGestionada;
+
 
 class BusquedaTestCase {
 	
-	TerminalPortuariaGestionada terminal;
+	TerminalGestionada terminal;
 	BusquedaDeRutas nombreDestino1;
 
 	
@@ -120,7 +121,7 @@ class BusquedaTestCase {
 		compuestaAnd= new BusquedaCompuestaAnd();
 		compuestaOr= new BusquedaCompuestaOr();
 		
-		terminal= new TerminalPortuariaGestionada();
+		terminal= new TerminalGestionada();
 		
 	}
 	@Test

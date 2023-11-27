@@ -17,8 +17,8 @@ import ar.edu.unq.po2.tpFinal.NavieraYCircuito.Circuito;
 import ar.edu.unq.po2.tpFinal.NavieraYCircuito.Naviera;
 import ar.edu.unq.po2.tpFinal.NavieraYCircuito.Tramo;
 import ar.edu.unq.po2.tpFinal.NavieraYCircuito.Viaje;
+import ar.edu.unq.po2.tpFinal.TerminalPortuaria.TerminalGestionada;
 import ar.edu.unq.po2.tpFinal.TerminalPortuaria.TerminalPortuaria;
-import ar.edu.unq.po2.tpFinal.TerminalPortuaria.TerminalPortuariaGestionada;
 
 public class CriterioTestCase {
 	
@@ -50,7 +50,7 @@ public class CriterioTestCase {
 	
 	ArrayList<Viaje> viajes; 
 	
-	TerminalPortuariaGestionada terminalG;
+	TerminalGestionada terminalG;
 	
 	@BeforeEach
 	void SetUp() throws Exception { 
@@ -101,7 +101,7 @@ public class CriterioTestCase {
 		precio = new MenorPrecio();
 		terminal = new MenorTerminal();
 		
-		terminalG = new TerminalPortuariaGestionada();
+		terminalG = new TerminalGestionada();
 		
 		
 	} 

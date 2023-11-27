@@ -41,5 +41,12 @@ public class Naviera {
 	public ArrayList<Viaje> getViajes(){
 		return this.viajes;
 	}
-
+	
+	public void enviarViajeATerminal(Viaje viaje){
+		for (Viaje v: this.viajes){
+			if(viaje == v) {
+				viaje.getCircuito().terminalInicial().agregarViaje(viaje);
+			}
+		}	
+	}
 }
