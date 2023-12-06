@@ -4,15 +4,15 @@ import ar.edu.unq.po2.TPFinal_TerminalPortuaria.container.Container;
 
 public class AlmacenamientoExcedente implements Servicio{
 	private double diasExcentes;
-	private double precioPorExcedente;
+	private int precioPorExcedente;
 	
-	public AlmacenamientoExcedente(double diasExcentes, double precioPorExcedente){
+	public AlmacenamientoExcedente(int diasExcentes, int precioPorExcedente){
 		this.diasExcentes=diasExcentes;
 		this.precioPorExcedente=precioPorExcedente;
 		
 	}
 	@Override
-	public double costo(Container container) {
+	public double costo(int horas) {
 		
 		return this.diasExcentes*this.precioPorExcedente;
 	}

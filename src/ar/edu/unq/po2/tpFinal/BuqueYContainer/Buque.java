@@ -16,7 +16,7 @@ public class Buque {
 		this.gps = gps;
 		this.containers = new ArrayList<Container>();
 		this.fase = new Outbound(this);
-	}
+	} 
 	
 	public FaseDeBuque getFase() {
 		return fase;

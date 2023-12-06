@@ -12,7 +12,7 @@ public class Circuito {
 	}
 	
 	public int tiempoTotal(){
-		int tiempo = 0;
+		int tiempo = 0; 
 		//retorna el tiempo total en horas
 		for(Tramo tramo: this.getTramos()) {
 			tiempo += tramo.getTiempo();

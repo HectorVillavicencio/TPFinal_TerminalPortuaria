@@ -12,7 +12,7 @@ public abstract class BusquedaDeRutas {
 			if (this.condicionBusqueda(viaje)) {
 				resultado.add(viaje);
 			} 
-		}
+		} 
 		return resultado;
 		
 	}

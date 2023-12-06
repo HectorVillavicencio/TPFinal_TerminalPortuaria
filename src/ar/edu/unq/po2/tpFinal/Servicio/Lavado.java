@@ -1,29 +1,26 @@
 package ar.edu.unq.po2.tpFinal.Servicio;
 
-import ar.edu.unq.po2.TPFinal_TerminalPortuaria.container.Container;
+import ar.edu.unq.po2.tpFinal.orden.Orden;
 
 public class Lavado implements Servicio{
 	private double precioFijoExcede;
 	private double precioFijo;
-	private double metroCubicoLimite;
+	private Orden orden;
 	
-	public Lavado(double precioFijoExcede, double precioFijo, double metroCubicoLimite){
+	public Lavado(double precioFijoExcede, double precioFijo, Orden orden){
 		this.precioFijoExcede=precioFijoExcede;
 		this.precioFijo=precioFijo;
-		this.metroCubicoLimite=metroCubicoLimite;
+		this.orden=orden;
 	}
 	
-	public double totalMetroCubico(Container container) {
-		return container.getAltura()*container.getAncho()*container.getLargo();
-	}
 	
 	@Override
-	public double costo(Container container) {
-		if (this.totalMetroCubico(container) > this.metroCubicoLimite){
+	public double costo(int horas) {
+		if (orden.getContainer().getMetrosCubicos() > 70) {
 			return precioFijoExcede;
 		}
-		else {
-			return precioFijo;
-		}
+			else {
+				return precioFijo;
+			}
 	}
 }

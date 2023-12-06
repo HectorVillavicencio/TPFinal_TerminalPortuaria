@@ -55,4 +55,10 @@ public class OrdenDeExportacion extends Orden{
 		// TODO Auto-generated method stub
 		return this.getFechaSalida().minusHours(this.horasAntesParaTurno);
 	}
+
+	@Override
+	protected int diasExcedidos() {
+		// TODO Auto-generated method stub
+		return 0;
+	}
 }
