@@ -14,7 +14,7 @@ public class BusquedaCompuestaOr extends BusquedaCompuesta {
 	protected boolean condicionFormato(ArrayList<Viaje> lista, Viaje elemento) {
 		return !lista.contains(elemento);
 	}
-
+	
 	@Override
 	protected ArrayList<Viaje> casoBase(ArrayList<Viaje> muestras) {
 		return new ArrayList<Viaje>();

@@ -19,7 +19,7 @@ public class MenorPrecio extends Criterio{
 
 	@Override
 	protected boolean condicionBusqueda(Circuito circuito1, Circuito circuito2) {
-		return circuito1.costoTotal()>circuito2.costoTotal(); 
+		return circuito1.costoTotal()>circuito2.costoTotal();
 	} 
 	
 }

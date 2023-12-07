@@ -12,7 +12,7 @@ public abstract class BusquedaCompuesta extends BusquedaDeRutas{
 		this.listaBusquedas = new ArrayList<BusquedaDeRutas>();
 		
 	}
-	
+	 
 	@Override
 	public ArrayList<Viaje> buscar(ArrayList<Viaje> viajes){
 		ArrayList<Viaje> resultado = this.casoBase(viajes);

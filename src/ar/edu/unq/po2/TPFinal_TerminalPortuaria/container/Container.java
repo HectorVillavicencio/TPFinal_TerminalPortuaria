@@ -44,6 +44,11 @@ public class Container {
 	public double getConsumo() {
 		return consumo;
 	}
+	public double getMetrosCubicos() {
+		//Los metros cúbicos del container.
+		return altura * ancho * largo;
+	}
+	
 }
 
 

@@ -13,7 +13,7 @@ public abstract class Criterio {
 				resultado = viaje.getCircuito();
 			} 
 		}
-		return resultado;  
+		return resultado; 
 		
 	}
 	

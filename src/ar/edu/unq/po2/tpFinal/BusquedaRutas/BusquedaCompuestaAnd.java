@@ -17,7 +17,7 @@ public class BusquedaCompuestaAnd extends BusquedaCompuesta {
 
 	@Override
 	protected ArrayList<Viaje> casoBase(ArrayList<Viaje> viajes) {
-		return viajes;
+		return viajes; 
 	}
 
 	@Override

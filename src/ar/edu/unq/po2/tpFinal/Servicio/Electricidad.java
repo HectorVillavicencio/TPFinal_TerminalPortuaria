@@ -1,29 +1,28 @@
 package ar.edu.unq.po2.tpFinal.Servicio;
 
-import ar.edu.unq.po2.TPFinal_TerminalPortuaria.container.Container;
 import ar.edu.unq.po2.TPFinal_TerminalPortuaria.container.TipoContainer;
+import ar.edu.unq.po2.tpFinal.orden.Orden;
 
 public class Electricidad implements Servicio{
 	
-	private double precioFijo;
+	private double costoPorKw;
+	private Orden orden;
 	
-	public Electricidad(double precioFijo){
-		this.precioFijo=precioFijo;
+	public Electricidad(double costoPorKw, Orden orden){
+		this.costoPorKw=costoPorKw;
+		this.orden=orden;
 	}
 	
-	private boolean isTypeReefer(Container container) {
-		TipoContainer tipoReefer=TipoContainer.Reefer;
-		return container.getTipoContainer().equals(tipoReefer);
+	private boolean isTypeReefer(Orden orden) {
+		TipoContainer tipoReefer= TipoContainer.Reefer;
+		return orden.getContainer().getTipoContainer().equals(tipoReefer);
 	}
 	
-	private double consumoContainer(Container container) {
-		return container.getConsumo();
-	}
 	
 	@Override
-	public double costo(Container container) {
+	public double costo (int cantHoras) {
 		double valor=0;
-		if (this.isTypeReefer(container)){valor=this.consumoContainer(container)*this.precioFijo;}
+		if(isTypeReefer(orden)) {valor=orden.getContainer().getConsumo() * this.costoPorKw;}
 		return valor;
-	}
+		}
 }

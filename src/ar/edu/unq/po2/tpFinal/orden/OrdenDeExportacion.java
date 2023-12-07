@@ -16,7 +16,7 @@ public class OrdenDeExportacion extends Orden{
 	private int horasAntesParaTurno;
 	
 	public OrdenDeExportacion(Shipper shipper,Container container, Camion camion, Chofer chofer, Viaje viaje, int horasParaTurno) {
-		super(container, camion, chofer, 3);
+		super(container, camion, chofer, 3,viaje);
 		this.viaje = viaje;
 		this.shipper = shipper;
 		this.horasAntesParaTurno = horasParaTurno;
@@ -54,5 +54,11 @@ public class OrdenDeExportacion extends Orden{
 	public LocalDateTime getTurno() {
 		// TODO Auto-generated method stub
 		return this.getFechaSalida().minusHours(this.horasAntesParaTurno);
+	}
+
+	@Override
+	public int diasExcedidos() {
+		// TODO Auto-generated method stub
+		return 0;
 	}
 }

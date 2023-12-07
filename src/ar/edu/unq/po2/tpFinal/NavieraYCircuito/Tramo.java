@@ -13,7 +13,7 @@ public class Tramo {
 		this.terminalInicial = terminalInicial;
 		this.terminalFinal = terminalFinal;
 		this.precio = precio;
-		this.tiempo = tiempo;
+		this.tiempo = tiempo; 
 	}
 
 	public TerminalPortuaria getTerminalInicial() {

@@ -1,17 +1,16 @@
 package ar.edu.unq.po2.tpFinal.Servicio;
 
-import ar.edu.unq.po2.TPFinal_TerminalPortuaria.container.Container;
 
 public class Pesado implements Servicio{
-	private double precioFijo;
+	private double costoDePesado;
 	
-	public Pesado(double precioFijo){
-		this.precioFijo=precioFijo;
+	public Pesado(double costoDePesado){
+		this.costoDePesado=costoDePesado;
 	}
 	
 	@Override
-	public double costo(Container container) {
+	public double costo(int horas) {
 		
-		return precioFijo;
+		return costoDePesado;
 	}
 }
