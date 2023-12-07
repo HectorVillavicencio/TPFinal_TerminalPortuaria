@@ -67,5 +67,10 @@ public abstract class Orden {
 		double precioServicios = servicios.stream().mapToDouble(serv -> serv.costo(diferenciaDeHorasPermitida)).sum();
 		return precioServicios+this.viaje.precioViajeEntre(terminalOrigen,terminalDestino);
 	}
+
+	public Viaje getViaje() {
+		// TODO Auto-generated method stub
+		return this.viaje;
+	}
 	
 }

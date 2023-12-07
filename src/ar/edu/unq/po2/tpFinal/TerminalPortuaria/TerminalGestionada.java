@@ -2,6 +2,7 @@ package ar.edu.unq.po2.tpFinal.TerminalPortuaria;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 
 import Criterio.Criterio;
@@ -45,19 +46,29 @@ public class TerminalGestionada implements TerminalPortuaria{
 	
 
 	public void avisarLlegadaAImportadores(Buque buque) {
-		
+		this.ordenesDeImportacionDeBuque(buque, this.ordenesDeImportacion).stream().forEach(oi -> oi.getConsignee().serAvisado(oi.getFechaLlegada()));;
 	}
 	
+	private List<OrdenDeImportacion> ordenesDeImportacionDeBuque(Buque buque, List<OrdenDeImportacion> lista) {
+		// TODO Auto-generated method stub
+		return lista.stream().filter(oi -> oi.getViaje().equals(buque.getViaje())).toList();
+	}
+
 	public void avisarSalidaAExportadores(Buque buque) {
-		
+		this.ordenesDeExportacionDeBuque(buque, this.ordenesDeExportacion).stream().forEach(oe -> oe.getShipper().serAvisado());
 	}
 	
-	public void exportar(Shipper shipper,Container container, Camion camion, Chofer chofer, Viaje viaje, int horasParaTurno,TerminalPortuaria origen, TerminalPortuaria destino) {
-		this.ordenesDeExportacion.add(new OrdenDeExportacion(shipper,container,camion,chofer,viaje,horasParaTurno,origen,destino));
+	private List<OrdenDeExportacion> ordenesDeExportacionDeBuque(Buque buque, List<OrdenDeExportacion> lista) {
+		// TODO Auto-generated method stub
+		return lista.stream().filter(oi -> oi.getViaje().equals(buque.getViaje())).toList();
 	}
 	
-	public void importar(Consignee consignee,Container container, Camion camion, Chofer chofer, LocalDateTime fechaLlegada,Viaje viaje,TerminalPortuaria origen, TerminalPortuaria destino) {
-		this.ordenesDeImportacion.add(new OrdenDeImportacion(consignee,container,camion,chofer,fechaLlegada, viaje, origen, destino));
+	public void exportar(Shipper shipper,Container container, Camion camion, Chofer chofer, Viaje viaje, int horasParaTurno,TerminalPortuaria destino) {
+		this.ordenesDeExportacion.add(new OrdenDeExportacion(shipper,container,camion,chofer,viaje,horasParaTurno,this,destino));
+	}
+	
+	public void importar(Consignee consignee,Container container, Camion camion, Chofer chofer, LocalDateTime fechaLlegada,Viaje viaje,TerminalPortuaria origen) {
+		this.ordenesDeImportacion.add(new OrdenDeImportacion(consignee,container,camion,chofer,fechaLlegada, viaje, origen, this));
 	}
 	
 	

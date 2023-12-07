@@ -16,6 +16,7 @@ public class Viaje {
 		this.circuito = circuito;
 		this.buque = buque;
 		this.fechaSalida =fechaSalida;
+		this.buque.setViaje(this);
 	}
 
 	public Circuito getCircuito() {
