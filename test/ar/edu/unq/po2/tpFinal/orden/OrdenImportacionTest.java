@@ -129,6 +129,6 @@ class OrdenImportacionTest {
 	
 	@Test
 	void testCamionTiene2DiasExcedidoEnRetiro() {
-		assertEquals(2,ordenDeImportacion.diasExcedidos(LocalDateTime.of(2023, 11, 13, 12, 30)));
+		assertEquals(2,ordenDeImportacion.CalcularDiasExcedidos(LocalDateTime.of(2023, 11, 13, 12, 30)));
 	}
 }

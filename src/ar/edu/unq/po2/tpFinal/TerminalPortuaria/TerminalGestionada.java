@@ -23,7 +23,7 @@ import ar.edu.unq.po2.tpFinal.orden.*;
 public class TerminalGestionada implements TerminalPortuaria{
 	
 	private ArrayList<Viaje> cronograma;
-	private ArrayList<Container> conteiners;
+	private ArrayList<Container> containers;
 	private ArrayList<EmpresaDeTransporte> empresasDeTrasnporte;
 	private Criterio criterio;
 	private List<OrdenDeExportacion> ordenesDeExportacion;
@@ -36,7 +36,7 @@ public class TerminalGestionada implements TerminalPortuaria{
 	
 	public TerminalGestionada() {
 		this.cronograma = new ArrayList<Viaje>();
-		this.conteiners = new ArrayList<Container>();
+		this.containers = new ArrayList<Container>();
 		this.empresasDeTrasnporte = new ArrayList<EmpresaDeTransporte>();	
 		this.criterio = new MenorPrecio();
 		this.ordenesDeExportacion = new ArrayList<OrdenDeExportacion>();
@@ -71,14 +71,24 @@ public class TerminalGestionada implements TerminalPortuaria{
 		this.ordenesDeImportacion.add(new OrdenDeImportacion(consignee,container,camion,chofer,fechaLlegada, viaje, origen, this));
 	}
 	
-	
+	public void retirarCarga(Camion camion, Container cargaARetirar) {
+		
+		OrdenDeImportacion orden = (OrdenDeImportacion) this.ordenDelContainer(cargaARetirar, this.ordenesDeImportacion);
+		if(orden.cumpleRequisitos(camion)) {
+			orden.CalcularDiasExcedidos(LocalDateTime.now());
+			this.registrarServicios(cargaARetirar, orden);
+			int indice = this.containers.indexOf(cargaARetirar);
+			camion.cargar(this.containers.get(indice));
+			this.containers.remove(cargaARetirar);
+		}
+	}
 	
 	public void agregarViaje(Viaje viaje){
 	this.cronograma.add(viaje);
 	}
 	
 	public void agregarContainer(Container container){
-	this.conteiners.add(container); 
+		this.containers.add(container); 
 	}
 	
 	public void agregarEmpresaDeTransporte(EmpresaDeTransporte empresa ){
@@ -104,7 +114,7 @@ public class TerminalGestionada implements TerminalPortuaria{
 
 
 	public ArrayList<Container> getConteiners() {
-		return conteiners;
+		return containers;
 	}
 	public ArrayList<EmpresaDeTransporte> getEmpresasDeTrasnporte() {
 		return empresasDeTrasnporte;
@@ -112,16 +122,16 @@ public class TerminalGestionada implements TerminalPortuaria{
 	public Criterio getCriterio() {
 		return criterio; 
 	}
-	private Orden ordenDelContainer(Container c) {
-		return ordenesDeExportacion.stream().filter(o-> o.getContainer() == c).findFirst().get();
+	private Orden ordenDelContainer(Container c, List<? extends Orden> ordenes) {
+		return ordenes.stream().filter(o-> o.getContainer() == c).findFirst().get();
 	}
 	
-	public void realizarLavadoDeContainer(Container c) {
+	public void realizarLavadoDeContainer(Container c, Orden orden) {
 		//Creo el servicio lavado con los costos.
-		Lavado lavado = new Lavado (this.precioFijoExcede, this.precioFijo, ordenDelContainer(c));
+		Lavado lavado = new Lavado (this.precioFijoExcede, this.precioFijo, orden);
 		//Busco la orden del container.
 		//Le agrego este servicio
-		ordenDelContainer(c).agregarServicio(lavado);
+		orden.agregarServicio(lavado);
 	}
 	public void setPrecioFijoExcede(int precioFijoExcede) {
 		this.precioFijoExcede= precioFijoExcede;
@@ -131,34 +141,41 @@ public class TerminalGestionada implements TerminalPortuaria{
 	}
 	
 	
-	private void realizarServicioElectrico(Container c) {
+	private void registrarServicios(Container c, Orden orden) {
+		this.realizarLavadoDeContainer(c, orden);
+		this.realizarServicioElectrico(c,orden);
+		this.realizarServicioDePesado(c, orden);
+		this.realizarServicioDeAlmacenamientoExcedente(c, orden);
+	}
+	
+	private void realizarServicioElectrico(Container c, Orden orden) {
 		//Creo el servicio eléctrico
-		Electricidad electricidad = new Electricidad(this.costoPorKw, ordenDelContainer(c));
+		Electricidad electricidad = new Electricidad(this.costoPorKw, orden);
 		//Busco la orden del container.
 		//Le agrego este servicio
-		ordenDelContainer(c).agregarServicio(electricidad);
+		orden.agregarServicio(electricidad);
 	}
 	public void setCostoPorKw(int costoPorKw) {
 		this.costoPorKw= costoPorKw;
 	}
 	
 	
-	private void realizarServicioDePesado(Container c) {
+	private void realizarServicioDePesado(Container c, Orden orden) {
 		//Creo el servicio de pesado
 		Pesado pesado = new Pesado(costoDePesado);
 		//Busco la orden del container.
 		//Le agrego este servicio
-		ordenDelContainer(c).agregarServicio(pesado);
+		orden.agregarServicio(pesado);
 	}
 	public void setCostoDePesado(int costoDePesado) {
 		this.costoDePesado= costoDePesado;
 	}
 	
-	private void realizarServicioDeAlmacenamientoExcedente(Container c) {
+	private void realizarServicioDeAlmacenamientoExcedente(Container c, Orden orden) {
 		//Creo el servicio de almacenamiento excedente
-		AlmacenamientoExcedente almacenamiento = new AlmacenamientoExcedente(precioPorExcedente,ordenDelContainer(c).diasExcedidos() );
+		AlmacenamientoExcedente almacenamiento = new AlmacenamientoExcedente(precioPorExcedente,orden.diasExcedidos() );
 		//Le agrego este servicio
-		ordenDelContainer(c).agregarServicio(almacenamiento);
+		orden.agregarServicio(almacenamiento);
 	}
 	public void setPrecioPorExcedente(int precioPorExcedente) {
 		this.precioPorExcedente = precioPorExcedente;
