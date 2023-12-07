@@ -13,6 +13,7 @@ import ar.edu.unq.po2.TPFinal_TerminalPortuaria.transporteTerrestre.Camion;
 import ar.edu.unq.po2.TPFinal_TerminalPortuaria.transporteTerrestre.Chofer;
 import ar.edu.unq.po2.tpFinal.NavieraYCircuito.Viaje;
 import ar.edu.unq.po2.tpFinal.ShipperYConsignee.Shipper;
+import ar.edu.unq.po2.tpFinal.TerminalPortuaria.TerminalPortuaria;
 
 import org.junit.jupiter.api.BeforeEach;
 
@@ -27,9 +28,13 @@ class OrdenExportacionTest {
 	private Chofer chofer2;
 	private Viaje viaje;
 	private int hsAntesDeTurno;
+	private TerminalPortuaria terminal;
+	private TerminalPortuaria terminal2;
 	
 	@BeforeEach
 	void SetUp() throws Exception{
+		terminal = mock(TerminalPortuaria.class);
+		terminal2 = mock(TerminalPortuaria.class);
 		shipper = mock(Shipper.class);
 		container = mock(Container.class);
 		camion = mock(Camion.class);
@@ -38,32 +43,32 @@ class OrdenExportacionTest {
 		chofer2 = mock(Chofer.class);
 		viaje = mock(Viaje.class);
 		hsAntesDeTurno = 2;
-		ordenDeExportacion = new OrdenDeExportacion(shipper,container,camion,chofer,viaje,hsAntesDeTurno);
+		ordenDeExportacion = new OrdenDeExportacion(shipper,container,camion,chofer,viaje, hsAntesDeTurno,terminal,terminal2);
 	}
 	
 	@Test
 	void testCamionCoincide() {
-		when(camion.getId()).thenReturn(10);
+		//when(camion.getId()).thenReturn(10);
 		assertTrue(ordenDeExportacion.coincideCamion(camion));
 	}
 	
 	@Test
 	void testCamionNoCoincide() {
-		when(camion.getId()).thenReturn(10);
-		when(camion2.getId()).thenReturn(11);
+		//when(camion.getId()).thenReturn(10);
+		//when(camion2.getId()).thenReturn(11);
 		assertFalse(ordenDeExportacion.coincideCamion(camion2));
 	}
 	
 	@Test
 	void testChoferCoincide() {
-		when(chofer.getId()).thenReturn(100);
+		//when(chofer.getId()).thenReturn(100);
 		assertTrue(ordenDeExportacion.coincideChofer(chofer));
 	}
 	
 	@Test
 	void testChoferNoCoincide() {
-		when(chofer.getId()).thenReturn(100);
-		when(chofer2.getId()).thenReturn(111);
+		//when(chofer.getId()).thenReturn(100);
+		//when(chofer2.getId()).thenReturn(111);
 		assertFalse(ordenDeExportacion.coincideChofer(chofer2));
 	}
 
@@ -105,47 +110,47 @@ class OrdenExportacionTest {
 	@Test
 	void testSeCumpleRequisitosPorqueCoincideCamionYChoferYNoSuperaElTiempoPermitido() {
 		when(viaje.getFechaSalida()).thenReturn(LocalDateTime.of(2023, 11, 10, 18, 30));
-		when(camion.getId()).thenReturn(10);
+		//when(camion.getId()).thenReturn(10);
 		when(camion.getChofer()).thenReturn(chofer);
-		when(chofer.getId()).thenReturn(100);
+		//when(chofer.getId()).thenReturn(100);
 		assertTrue(ordenDeExportacion.cumpleRequisitos(camion, LocalDateTime.of(2023, 11, 10, 18, 30)));
 	}	
 	
 	@Test
 	void testNoSeCumpleRequisitosPorqueCoincideCamionYChoferPeroSuperaElTiempoPermitido() {
 		when(viaje.getFechaSalida()).thenReturn(LocalDateTime.of(2023, 11, 10, 18, 30));
-		when(camion.getId()).thenReturn(10);
+		//when(camion.getId()).thenReturn(10);
 		when(camion.getChofer()).thenReturn(chofer);
-		when(chofer.getId()).thenReturn(100);
+		//when(chofer.getId()).thenReturn(100);
 		assertFalse(ordenDeExportacion.cumpleRequisitos(camion, LocalDateTime.of(2023, 11, 10, 20, 30)));
 	}	
 	
 	@Test
 	void testNoSeCumpleRequisitosPorqueCoincideCamionYNoSuperaElTiempoPermitidoPeroElChoferNocoincide() {
 		when(viaje.getFechaSalida()).thenReturn(LocalDateTime.of(2023, 11, 10, 18, 30));
-		when(camion.getId()).thenReturn(10);
+		//when(camion.getId()).thenReturn(10);
 		when(camion.getChofer()).thenReturn(chofer2);
-		when(chofer.getId()).thenReturn(100);
-		when(chofer2.getId()).thenReturn(101);
+		//when(chofer.getId()).thenReturn(100);
+		//when(chofer2.getId()).thenReturn(101);
 		assertFalse(ordenDeExportacion.cumpleRequisitos(camion, LocalDateTime.of(2023, 11, 10, 18, 30)));
 	}
 	
 	@Test
 	void testNoSeCumpleRequisitosPorqueCoincideChoferYNoSuperaElTiempoPermitidoPeroElCamionNocoincide() {
 		when(viaje.getFechaSalida()).thenReturn(LocalDateTime.of(2023, 11, 10, 18, 30));
-		when(camion.getId()).thenReturn(10);
-		when(camion2.getId()).thenReturn(11);
+		//when(camion.getId()).thenReturn(10);
+		//when(camion2.getId()).thenReturn(11);
 		when(camion2.getChofer()).thenReturn(chofer);
-		when(chofer.getId()).thenReturn(100);
+		//when(chofer.getId()).thenReturn(100);
 		assertFalse(ordenDeExportacion.cumpleRequisitos(camion2, LocalDateTime.of(2023, 11, 10, 18, 30)));
 	}
 	
 	@Test
 	void testSeCumpleRequisitosLuegoSeModificaDiferenciaPermitidaYNoSeCumplen() {
 		when(viaje.getFechaSalida()).thenReturn(LocalDateTime.of(2023, 11, 10, 18, 30));
-		when(camion.getId()).thenReturn(10);
+		//when(camion.getId()).thenReturn(10);
 		when(camion.getChofer()).thenReturn(chofer);
-		when(chofer.getId()).thenReturn(100);
+		//when(chofer.getId()).thenReturn(100);
 		assertTrue(ordenDeExportacion.cumpleRequisitos(camion, LocalDateTime.of(2023, 11, 10, 18, 30)));
 		ordenDeExportacion.diferenciaDeHorasPermitidas(1);
 		assertFalse(ordenDeExportacion.cumpleRequisitos(camion, LocalDateTime.of(2023, 11, 10, 18, 30)));

@@ -1,5 +1,7 @@
 package ar.edu.unq.po2.tpFinal.ShipperYConsignee;
 
-public interface Consignee {
+import java.time.LocalDateTime;
 
+public interface Consignee {
+	public void serAvisado(LocalDateTime fecha);
 }
