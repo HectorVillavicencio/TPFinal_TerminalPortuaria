@@ -41,7 +41,7 @@ public class OrdenDeImportacion extends Orden{
 		return this.fechaLlegada.plusHours(this.diferenciaDeHorasPermitida);
 	}
 	
-	public int diasExcedidos(LocalDateTime fechaDeRetiro) {
+	public int CalcularDiasExcedidos(LocalDateTime fechaDeRetiro) {
 		return (int) ChronoUnit.DAYS.between(this.getTurno(), fechaDeRetiro);
 	}
 
