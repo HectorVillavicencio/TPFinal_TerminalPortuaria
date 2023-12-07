@@ -5,6 +5,7 @@ import java.time.LocalDateTime;
 import java.time.LocalTime;
 
 import ar.edu.unq.po2.tpFinal.BuqueYContainer.Buque;
+import ar.edu.unq.po2.tpFinal.TerminalPortuaria.TerminalPortuaria;
 
 public class Viaje {
 	private Circuito circuito;
@@ -34,9 +35,10 @@ public class Viaje {
         return fechaSalida.plusHours(tiempoTotal); 
 	}
 
-	public double precioViaje() {
+	public double precioViajeEntre(TerminalPortuaria terminalOrigen, TerminalPortuaria terminalDestino) {
 		// TODO Auto-generated method stub
-		return 0;
+		
+		return this.circuito.precioEntre(terminalOrigen,terminalDestino);
 	}
 
 }

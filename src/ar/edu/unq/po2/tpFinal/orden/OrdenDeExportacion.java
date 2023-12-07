@@ -9,14 +9,16 @@ import ar.edu.unq.po2.TPFinal_TerminalPortuaria.transporteTerrestre.Camion;
 import ar.edu.unq.po2.TPFinal_TerminalPortuaria.transporteTerrestre.Chofer;
 import ar.edu.unq.po2.tpFinal.NavieraYCircuito.Viaje;
 import ar.edu.unq.po2.tpFinal.ShipperYConsignee.Shipper;
+import ar.edu.unq.po2.tpFinal.TerminalPortuaria.TerminalPortuaria;
 
 public class OrdenDeExportacion extends Orden{
 	private Shipper shipper;
 	private Viaje viaje;
 	private int horasAntesParaTurno;
 	
-	public OrdenDeExportacion(Shipper shipper,Container container, Camion camion, Chofer chofer, Viaje viaje, int horasParaTurno) {
-		super(container, camion, chofer, 3,viaje);
+	
+	public OrdenDeExportacion(Shipper shipper,Container container, Camion camion, Chofer chofer, Viaje viaje, int horasParaTurno, TerminalPortuaria terminalOrigen, TerminalPortuaria terminalDestino) {
+		super(container, camion, chofer, 3,viaje,terminalOrigen,terminalDestino);
 		this.viaje = viaje;
 		this.shipper = shipper;
 		this.horasAntesParaTurno = horasParaTurno;
