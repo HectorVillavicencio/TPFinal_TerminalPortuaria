@@ -1,5 +1,6 @@
 package ar.edu.unq.po2.tpFinal.TerminalPortuaria;
 
+import static org.junit.Assert.assertEquals;
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.verify;
@@ -77,10 +78,13 @@ class TerminalGestionadaTest {
 	
 	@Test
 	void testAgragadoDeEmpresasDeTransporte() {
-		when(camion.getCarga()).thenReturn(container);
-		when(ordenE.cumpleRequisitos(camion, fechaLlegada)).thenReturn(true);
-		terminalGestionada.ingresarCarga(camion,fechaLlegada);
-		verify(camion).descargar();
+		terminalGestionada.agregarEmpresaDeTransporte(empresa);
+		assertEquals(terminalGestionada.getEmpresasDeTrasnporte().size(),1);
 	}
 
+	@Test
+	void testAgragadoDeContainers() {
+		terminalGestionada.agregarContainer(container);
+		assertEquals(terminalGestionada.getContainers().size(),1);
+	}
 }
