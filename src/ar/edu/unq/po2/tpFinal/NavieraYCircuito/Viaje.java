@@ -36,7 +36,6 @@ public class Viaje {
 	}
 
 	public double precioViajeEntre(TerminalPortuaria terminalOrigen, TerminalPortuaria terminalDestino) {
-		// TODO Auto-generated method stub
 		
 		return this.circuito.precioEntre(terminalOrigen,terminalDestino);
 	}
