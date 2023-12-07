@@ -3,6 +3,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import ar.edu.unq.po2.TPFinal_TerminalPortuaria.container.*;
+import ar.edu.unq.po2.tpFinal.NavieraYCircuito.Viaje;
 import ar.edu.unq.po2.tpFinal.TerminalPortuaria.TerminalGestionada;
 
 public class Buque {
@@ -11,12 +12,22 @@ public class Buque {
 	private GPS gps;
 	private FaseDeBuque fase;
 	private TerminalGestionada terminal;
+	private Viaje viaje;
 	
 	public Buque(GPS gps) {
 		this.gps = gps;
 		this.containers = new ArrayList<Container>();
 		this.fase = new Outbound(this);
+		this.viaje = null;
 	} 
+	
+	public Viaje getViaje() {
+		return this.viaje;
+	}
+	
+	public void setViaje(Viaje viaje) {
+		this.viaje = viaje;
+	}
 	
 	public FaseDeBuque getFase() {
 		return fase;
