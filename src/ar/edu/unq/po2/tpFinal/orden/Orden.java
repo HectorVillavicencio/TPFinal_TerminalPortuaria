@@ -9,6 +9,7 @@ import ar.edu.unq.po2.TPFinal_TerminalPortuaria.container.Container;
 import ar.edu.unq.po2.TPFinal_TerminalPortuaria.transporteTerrestre.Camion;
 import ar.edu.unq.po2.TPFinal_TerminalPortuaria.transporteTerrestre.Chofer;
 import ar.edu.unq.po2.tpFinal.Servicio.Servicio;
+import ar.edu.unq.po2.tpFinal.TerminalPortuaria.TerminalPortuaria;
 import ar.edu.unq.po2.tpFinal.NavieraYCircuito.*;
 
 public abstract class Orden {
@@ -18,16 +19,20 @@ public abstract class Orden {
 	protected int diferenciaDeHorasPermitida;
 	protected List<Servicio> servicios;
 	protected Viaje viaje;
+	protected TerminalPortuaria terminalOrigen;
+	protected TerminalPortuaria terminalDestino;
 
 
 	
-	public Orden(Container container, Camion camion, Chofer chofer, int diferenciaDeHorasPermitida, Viaje viaje) {
+	public Orden(Container container, Camion camion, Chofer chofer, int diferenciaDeHorasPermitida, Viaje viaje, TerminalPortuaria terminalOrigen, TerminalPortuaria terminalDestino) {
 		this.container = container;
 		this.camion = camion;
 		this.chofer = chofer;
 		this.servicios = new ArrayList<Servicio>();
 		this.diferenciaDeHorasPermitida = diferenciaDeHorasPermitida;
 		this.viaje=viaje;
+		this.terminalDestino=terminalDestino;
+		this.terminalOrigen=terminalOrigen;
 	}
 	
 	protected void diferenciaDeHorasPermitidas(int horas) {
@@ -60,7 +65,7 @@ public abstract class Orden {
 	
 	public double costoTotalServicios() {
 		double precioServicios = servicios.stream().mapToDouble(serv -> serv.costo(diferenciaDeHorasPermitida)).sum();
-		return precioServicios+this.viaje.precioViaje();
+		return precioServicios+this.viaje.precioViajeEntre(terminalOrigen,terminalDestino);
 	}
 	
 }

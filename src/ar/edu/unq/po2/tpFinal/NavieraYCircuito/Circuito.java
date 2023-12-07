@@ -45,6 +45,11 @@ public class Circuito {
 		this.tramos.add(tramo);
 	}
 
+	public double precioEntre(TerminalPortuaria terminalOrigen, TerminalPortuaria terminalDestino) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
 
 	
 	

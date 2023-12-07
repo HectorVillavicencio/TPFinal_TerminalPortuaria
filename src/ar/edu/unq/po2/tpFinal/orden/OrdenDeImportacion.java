@@ -9,13 +9,14 @@ import ar.edu.unq.po2.TPFinal_TerminalPortuaria.transporteTerrestre.Camion;
 import ar.edu.unq.po2.TPFinal_TerminalPortuaria.transporteTerrestre.Chofer;
 import ar.edu.unq.po2.tpFinal.NavieraYCircuito.Viaje;
 import ar.edu.unq.po2.tpFinal.ShipperYConsignee.Consignee;
+import ar.edu.unq.po2.tpFinal.TerminalPortuaria.TerminalPortuaria;
 
 public class OrdenDeImportacion extends Orden{
 	private Consignee consignee;
 	private LocalDateTime fechaLlegada;
 	
-	public OrdenDeImportacion(Consignee consignee,Container container, Camion camion, Chofer chofer, LocalDateTime fechaLlegada, Viaje viaje) {
-		super(container,camion,chofer, 24, viaje);
+	public OrdenDeImportacion(Consignee consignee,Container container, Camion camion, Chofer chofer, LocalDateTime fechaLlegada, Viaje viaje,TerminalPortuaria terminalOrigen, TerminalPortuaria terminalDestino) {
+		super(container,camion,chofer, 24, viaje,terminalOrigen,terminalDestino);
 		this.fechaLlegada = fechaLlegada;
 		this.consignee = consignee;
 	}
