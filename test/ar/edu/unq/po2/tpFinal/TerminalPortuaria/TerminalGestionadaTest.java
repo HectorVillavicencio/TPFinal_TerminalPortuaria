@@ -13,11 +13,15 @@ import org.junit.jupiter.api.Test;
 import ar.edu.unq.po2.TPFinal_TerminalPortuaria.container.Container;
 import ar.edu.unq.po2.TPFinal_TerminalPortuaria.transporteTerrestre.Camion;
 import ar.edu.unq.po2.TPFinal_TerminalPortuaria.transporteTerrestre.Chofer;
+import ar.edu.unq.po2.TPFinal_TerminalPortuaria.transporteTerrestre.EmpresaDeTransporte;
 import ar.edu.unq.po2.tpFinal.BuqueYContainer.Buque;
 import ar.edu.unq.po2.tpFinal.BuqueYContainer.GPS;
 import ar.edu.unq.po2.tpFinal.NavieraYCircuito.Viaje;
 import ar.edu.unq.po2.tpFinal.ShipperYConsignee.Consignee;
 import ar.edu.unq.po2.tpFinal.ShipperYConsignee.Shipper;
+import ar.edu.unq.po2.tpFinal.orden.Orden;
+import ar.edu.unq.po2.tpFinal.orden.OrdenDeExportacion;
+import ar.edu.unq.po2.tpFinal.orden.OrdenDeImportacion;
 
 class TerminalGestionadaTest {
 	
@@ -32,6 +36,9 @@ class TerminalGestionadaTest {
 	private TerminalPortuaria terminalDestino;
 	private Container container;
 	private Buque buque;
+	private OrdenDeExportacion ordenE;
+	private OrdenDeImportacion ordenI;
+	private EmpresaDeTransporte empresa;
 	
 	@BeforeEach
 	void SetUp() throws Exception{
@@ -46,6 +53,9 @@ class TerminalGestionadaTest {
 		terminalDestino = mock(TerminalPortuaria.class);
 		container = mock(Container.class);
 		buque = mock(Buque.class);
+		ordenE = mock(OrdenDeExportacion.class);
+		ordenI = mock(OrdenDeImportacion.class);
+		empresa = mock(EmpresaDeTransporte.class);
 		
 	}
 	
@@ -63,6 +73,14 @@ class TerminalGestionadaTest {
 		terminalGestionada.exportar(shipper, container, camion, chofer, viaje, 0, terminalDestino);
 		terminalGestionada.avisarSalidaAExportadores(buque);
 		verify(shipper).serAvisado();
+	}
+	
+	@Test
+	void testAgragadoDeEmpresasDeTransporte() {
+		when(camion.getCarga()).thenReturn(container);
+		when(ordenE.cumpleRequisitos(camion, fechaLlegada)).thenReturn(true);
+		terminalGestionada.ingresarCarga(camion,fechaLlegada);
+		verify(camion).descargar();
 	}
 
 }
