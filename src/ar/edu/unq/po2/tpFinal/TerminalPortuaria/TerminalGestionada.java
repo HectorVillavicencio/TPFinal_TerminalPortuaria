@@ -122,7 +122,7 @@ public class TerminalGestionada implements TerminalPortuaria{
 	}
 
 
-	public ArrayList<Container> getConteiners() {
+	public ArrayList<Container> getContainers() {
 		return containers;
 	}
 	public ArrayList<EmpresaDeTransporte> getEmpresasDeTrasnporte() {
