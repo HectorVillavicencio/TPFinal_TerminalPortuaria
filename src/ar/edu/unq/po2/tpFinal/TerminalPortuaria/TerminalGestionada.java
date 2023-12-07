@@ -56,8 +56,8 @@ public class TerminalGestionada implements TerminalPortuaria{
 		this.ordenesDeExportacion.add(new OrdenDeExportacion(shipper,container,camion,chofer,viaje,horasParaTurno));
 	}
 	
-	public void importar(Consignee consignee,Container container, Camion camion, Chofer chofer, LocalDateTime fechaLlegada) {
-		this.ordenesDeImportacion.add(new OrdenDeImportacion(consignee,container,camion,chofer,fechaLlegada));
+	public void importar(Consignee consignee,Container container, Camion camion, Chofer chofer, LocalDateTime fechaLlegada,Viaje viaje) {
+		this.ordenesDeImportacion.add(new OrdenDeImportacion(consignee,container,camion,chofer,fechaLlegada, viaje));
 	}
 	
 	
@@ -143,7 +143,6 @@ public class TerminalGestionada implements TerminalPortuaria{
 		this.costoDePesado= costoDePesado;
 	}
 	
-	//revisar este ultimo!
 	private void realizarServicioDeAlmacenamientoExcedente(Container c) {
 		//Creo el servicio de almacenamiento excedente
 		AlmacenamientoExcedente almacenamiento = new AlmacenamientoExcedente(precioPorExcedente,ordenDelContainer(c).diasExcedidos() );

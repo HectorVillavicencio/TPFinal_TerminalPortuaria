@@ -34,4 +34,9 @@ public class Viaje {
         return fechaSalida.plusHours(tiempoTotal); 
 	}
 
+	public double precioViaje() {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
 }

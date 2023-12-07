@@ -7,14 +7,15 @@ import java.time.temporal.ChronoUnit;
 import ar.edu.unq.po2.TPFinal_TerminalPortuaria.container.Container;
 import ar.edu.unq.po2.TPFinal_TerminalPortuaria.transporteTerrestre.Camion;
 import ar.edu.unq.po2.TPFinal_TerminalPortuaria.transporteTerrestre.Chofer;
+import ar.edu.unq.po2.tpFinal.NavieraYCircuito.Viaje;
 import ar.edu.unq.po2.tpFinal.ShipperYConsignee.Consignee;
 
 public class OrdenDeImportacion extends Orden{
 	private Consignee consignee;
 	private LocalDateTime fechaLlegada;
 	
-	public OrdenDeImportacion(Consignee consignee,Container container, Camion camion, Chofer chofer, LocalDateTime fechaLlegada) {
-		super(container,camion,chofer, 24);
+	public OrdenDeImportacion(Consignee consignee,Container container, Camion camion, Chofer chofer, LocalDateTime fechaLlegada, Viaje viaje) {
+		super(container,camion,chofer, 24, viaje);
 		this.fechaLlegada = fechaLlegada;
 		this.consignee = consignee;
 	}
@@ -41,5 +42,11 @@ public class OrdenDeImportacion extends Orden{
 	
 	public int diasExcedidos(LocalDateTime fechaDeRetiro) {
 		return (int) ChronoUnit.DAYS.between(this.getTurno(), fechaDeRetiro);
+	}
+
+	@Override
+	public int diasExcedidos() {
+		// TODO Auto-generated method stub
+		return 0;
 	}
 }
