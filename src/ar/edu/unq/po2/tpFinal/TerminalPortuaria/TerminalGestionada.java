@@ -52,12 +52,12 @@ public class TerminalGestionada implements TerminalPortuaria{
 		
 	}
 	
-	public void exportar(Shipper shipper,Container container, Camion camion, Chofer chofer, Viaje viaje, int horasParaTurno) {
-		this.ordenesDeExportacion.add(new OrdenDeExportacion(shipper,container,camion,chofer,viaje,horasParaTurno));
+	public void exportar(Shipper shipper,Container container, Camion camion, Chofer chofer, Viaje viaje, int horasParaTurno,TerminalPortuaria origen, TerminalPortuaria destino) {
+		this.ordenesDeExportacion.add(new OrdenDeExportacion(shipper,container,camion,chofer,viaje,horasParaTurno,origen,destino));
 	}
 	
-	public void importar(Consignee consignee,Container container, Camion camion, Chofer chofer, LocalDateTime fechaLlegada,Viaje viaje) {
-		this.ordenesDeImportacion.add(new OrdenDeImportacion(consignee,container,camion,chofer,fechaLlegada, viaje));
+	public void importar(Consignee consignee,Container container, Camion camion, Chofer chofer, LocalDateTime fechaLlegada,Viaje viaje,TerminalPortuaria origen, TerminalPortuaria destino) {
+		this.ordenesDeImportacion.add(new OrdenDeImportacion(consignee,container,camion,chofer,fechaLlegada, viaje, origen, destino));
 	}
 	
 	

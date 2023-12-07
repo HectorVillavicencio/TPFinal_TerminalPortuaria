@@ -19,7 +19,7 @@ class CamionTest {
 	public void setUp() throws Exception {
 		chofer1 = mock(Chofer.class);
 		container = mock(Container.class);
-		camion1 = new Camion(1);
+		camion1 = new Camion();
 	}
 
 	@Test
@@ -49,13 +49,9 @@ class CamionTest {
 	}
 	
 	@Test
-	public void testIdDeChofer() {
-		camion1.agregarChofer(new Chofer(1));
-		assertEquals(camion1.getChofer().getId(),1);
+	public void testDeGetChofer() {
+		camion1.agregarChofer(chofer1);
+		assertEquals(camion1.getChofer(), chofer1);
 	}
 	
-	@Test
-	public void testIdDeCamion() {
-		assertEquals(camion1.getId(),1);
-	}
 }
