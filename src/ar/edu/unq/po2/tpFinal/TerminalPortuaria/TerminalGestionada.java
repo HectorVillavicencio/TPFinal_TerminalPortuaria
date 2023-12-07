@@ -71,11 +71,20 @@ public class TerminalGestionada implements TerminalPortuaria{
 		this.ordenesDeImportacion.add(new OrdenDeImportacion(consignee,container,camion,chofer,fechaLlegada, viaje, origen, this));
 	}
 	
-	public void retirarCarga(Camion camion, Container cargaARetirar) {
+	public void ingresarCarga(Camion camion,LocalDateTime momentoDeLlegada) {
+		Container carga = camion.getCarga();
+		OrdenDeExportacion orden =(OrdenDeExportacion) this.ordenDelContainer(carga, this.ordenesDeExportacion);
+		if(orden.cumpleRequisitos(camion, momentoDeLlegada)) {
+			this.agregarContainer(carga);
+			camion.descargar();
+		}
+	}
+	
+	public void retirarCarga(Camion camion, Container cargaARetirar, LocalDateTime momentoDeLlegada) {
 		
 		OrdenDeImportacion orden = (OrdenDeImportacion) this.ordenDelContainer(cargaARetirar, this.ordenesDeImportacion);
 		if(orden.cumpleRequisitos(camion)) {
-			orden.CalcularDiasExcedidos(LocalDateTime.now());
+			orden.CalcularDiasExcedidos(momentoDeLlegada);
 			this.registrarServicios(cargaARetirar, orden);
 			int indice = this.containers.indexOf(cargaARetirar);
 			camion.cargar(this.containers.get(indice));
