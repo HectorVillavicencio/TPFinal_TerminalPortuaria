@@ -1,18 +1,19 @@
 package ar.edu.unq.po2.tpFinal.NavieraYCircuito;
 
+import ar.edu.unq.po2.tpFinal.TerminalPortuaria.TerminalGestionada;
 import ar.edu.unq.po2.tpFinal.TerminalPortuaria.TerminalPortuaria;
 
 public class Tramo {
 	
-	private TerminalPortuaria terminalInicial;
-	private TerminalPortuaria terminalFinal;
+	private TerminalGestionada terminalInicial;
+	private TerminalGestionada terminalFinal;
 	private float precio;
 	private int tiempo;
 	
-	public Tramo(TerminalPortuaria terminalInicial, TerminalPortuaria terminalFinal, float precio, int tiempo) {
+	public Tramo(TerminalGestionada terminalInicial, TerminalGestionada terminalFinal, float precio, int tiempo) {
 		this.terminalInicial = terminalInicial;
 		this.terminalFinal = terminalFinal;
-		this.precio = precio;
+		this.precio = precio; 
 		this.tiempo = tiempo; 
 	}
 

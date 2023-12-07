@@ -46,12 +46,22 @@ public class Circuito {
 	}
 
 	public double precioEntre(TerminalPortuaria terminalOrigen, TerminalPortuaria terminalDestino) {
-		// TODO Auto-generated method stub
-		return 0;
-	}
+        double precioTotal = 0;
 
+        for (Tramo tramo : tramos) {
+            precioTotal += tramo.getPrecio();
 
-	
-	
+            if (tramo.getTerminalFinal().equals(terminalDestino)) {
+                break;
+            }
+        } 
 
+        return precioTotal;
+    };
 }
+
+
+	
+	
+
+

@@ -29,14 +29,14 @@ class NavierasYCircuitos {
 	Tramo tramo4;
 	Buque buque1;
 	Buque buque2;
-	TerminalPortuaria terminal1;
-	TerminalPortuaria terminal2;
-	TerminalPortuaria terminal3;
-	TerminalPortuaria terminal4;
-	TerminalPortuaria terminal5;
-	TerminalPortuaria terminal6;
-	TerminalPortuaria terminal7;
-	TerminalPortuaria terminal8;
+	TerminalGestionada terminal1;
+	TerminalGestionada terminal2;
+	TerminalGestionada terminal3;
+	TerminalGestionada terminal4;
+	TerminalGestionada terminal5;
+	TerminalGestionada terminal6;
+	TerminalGestionada terminal7;
+	TerminalGestionada terminal8;
 	Viaje viaje1;
 	Viaje viaje2;
 	
@@ -50,14 +50,14 @@ class NavierasYCircuitos {
 		buque1 = mock(Buque.class);
 		buque2 = mock(Buque.class);
 		
-		terminal1 = mock(TerminalPortuaria.class);
-		terminal2 = mock(TerminalPortuaria.class);
-		terminal3 = mock(TerminalPortuaria.class);
-		terminal4 = mock(TerminalPortuaria.class);
-		terminal5 = mock(TerminalPortuaria.class);
-		terminal6 = mock(TerminalPortuaria.class);
-		terminal7 = mock(TerminalPortuaria.class);
-		terminal8 = mock(TerminalPortuaria.class);
+		terminal1 = new TerminalGestionada();
+		terminal2 = mock(TerminalGestionada.class);
+		terminal3 =  new TerminalGestionada();
+		terminal4 = mock(TerminalGestionada.class);
+		terminal5 = mock(TerminalGestionada.class);
+		terminal6 = mock(TerminalGestionada.class);
+		terminal7 = mock(TerminalGestionada.class);
+		terminal8 = mock(TerminalGestionada.class);
 		
 		tramo1 = new Tramo(terminal1,terminal2,10,10);
 		tramo2 = new Tramo(terminal3,terminal4,9,9);
@@ -69,7 +69,7 @@ class NavierasYCircuitos {
 		circuito3 = new Circuito(); 
 		
 		circuito3.agregarTramo(tramo1);
-		circuito3.agregarTramo(tramo2);
+		circuito3.agregarTramo(tramo2); 
 		
 		viaje1 = new Viaje(circuito3, buque1,LocalDateTime.of(2023, Month.NOVEMBER, 10, 12, 0));
 		
@@ -181,5 +181,35 @@ class NavierasYCircuitos {
 		terminal.agregarViaje(viaje1);
 		assertEquals(terminal.getCronograma().size(),1);
 	}
+	
+	@Test
+	void precioEntreTerminales1() {
+		assertEquals(circuito3.precioEntre(terminal1, terminal4),19);
+	}
+	
+	@Test
+	void precioEntreTerminales2() {
+		assertEquals(circuito3.precioEntre(terminal1, terminal2),10);
+	}
+	
+	@Test
+	void precioEntreTramos1() {
+		assertEquals(viaje1.precioViajeEntre(terminal1, terminal2), 10);
+	}
+	
+	@Test
+	void precioEntreTramos2() {
+		assertEquals(viaje1.precioViajeEntre(terminal1, terminal4), 19);
+	}
+	
+	@Test
+	void enviarViajeATerminales() {
+		naviera.enviarViajeATerminales(viaje1);
+		assertEquals(terminal1.getCronograma().size(), 2);
+		
+	}
+	
+	
+	
 
 }
