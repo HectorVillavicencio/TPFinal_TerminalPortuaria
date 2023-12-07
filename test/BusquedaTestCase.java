@@ -53,14 +53,14 @@ class BusquedaTestCase {
 	Tramo tramo4;
 	Buque buque1;
 	Buque buque2;
-	TerminalPortuaria terminal1;
-	TerminalPortuaria terminal2;
-	TerminalPortuaria terminal3;
-	TerminalPortuaria terminal4;
-	TerminalPortuaria terminal5;
-	TerminalPortuaria terminal6;
-	TerminalPortuaria terminal7;
-	TerminalPortuaria terminal8;
+	TerminalGestionada terminal1;
+	TerminalGestionada terminal2;
+	TerminalGestionada terminal3;
+	TerminalGestionada terminal4;
+	TerminalGestionada terminal5;
+	TerminalGestionada terminal6;
+	TerminalGestionada terminal7;
+	TerminalGestionada terminal8;
 	Viaje viaje1;
 	Viaje viaje2;
 	Viaje viaje3;
@@ -75,14 +75,14 @@ class BusquedaTestCase {
 		buque1 = mock(Buque.class);
 		buque2 = mock(Buque.class);
 		
-		terminal1 = mock(TerminalPortuaria.class);
-		terminal2 = mock(TerminalPortuaria.class);
-		terminal3 = mock(TerminalPortuaria.class);
-		terminal4 = mock(TerminalPortuaria.class);
-		terminal5 = mock(TerminalPortuaria.class);
-		terminal6 = mock(TerminalPortuaria.class);
-		terminal7 = mock(TerminalPortuaria.class);
-		terminal8 = mock(TerminalPortuaria.class);
+		terminal1 = mock(TerminalGestionada.class);
+		terminal2 = mock(TerminalGestionada.class);
+		terminal3 = mock(TerminalGestionada.class);
+		terminal4 = mock(TerminalGestionada.class);
+		terminal5 = mock(TerminalGestionada.class);
+		terminal6 = mock(TerminalGestionada.class);
+		terminal7 = mock(TerminalGestionada.class);
+		terminal8 = mock(TerminalGestionada.class);
 		
 		tramo1 = new Tramo(terminal1,terminal2,1,1);
 		tramo2 = new Tramo(terminal3,terminal4,2,2);
